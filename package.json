@@ -44,6 +44,8 @@
     "qunitjs": "^1.23.0"
   },
   "scripts": {
-    "test": "grunt test --verbose"
+    "test": "grunt test --verbose",
+    "build": "grunt all",
+    "prepublishOnly": "npm run build"
   }
 }

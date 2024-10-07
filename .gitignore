@@ -5,6 +5,7 @@
 *.bpg
 *.xml
 dist/
+.vscode/
 node_modules/*
 test/lib_*/
 test/coverage/
