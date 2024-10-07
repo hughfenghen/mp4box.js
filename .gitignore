@@ -4,6 +4,7 @@
 *.hevc
 *.bpg
 *.xml
+dist/
 node_modules/*
 test/lib_*/
 test/coverage/
