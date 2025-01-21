@@ -30,12 +30,12 @@ jobs:
 
       - name: Prep commit message
         run: |
-          echo "NEW_VERSION=$(npx changeset status --output=release.json && jq -r '.releases[0].newVersion' release.json && rm release.json)" >> "$GITHUB_ENV"
+          echo "NEW_VERSION=$(npx @changesets/cli status --output=release.json && jq -r '.releases[0].newVersion' release.json && rm release.json)" >> "$GITHUB_ENV"
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          version: npx changeset version
+          version: npx @changesets/cli version
           title: 'Release v${{env.NEW_VERSION}}'
           commit: 'Release v${{env.NEW_VERSION}}'
           publish: npm publish -r
