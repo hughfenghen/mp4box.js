@@ -1,6 +1,6 @@
 {
   "name": "@webav/mp4box.js",
-  "version": "0.5.4-fenghen",
+  "version": "0.5.5",
   "description": "JavaScript version of GPAC's MP4Box tool",
   "keywords": [
     "mp4",
