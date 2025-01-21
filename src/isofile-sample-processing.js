@@ -369,6 +369,8 @@ ISOFile.prototype.updateSampleLists = function() {
 			for (i = 0; i < moof.trafs.length; i++) {
 				traf = moof.trafs[i];
 				trak = this.getTrackById(traf.tfhd.track_id);
+				if (trak.samples == null) trak.samples = []
+
 				trex = this.getTrexById(traf.tfhd.track_id);
 				if (traf.tfhd.flags & BoxParser.TFHD_FLAG_SAMPLE_DESC) {
 					default_sample_description_index = traf.tfhd.default_sample_description_index;
