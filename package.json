@@ -24,6 +24,7 @@
   },
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "@changesets/cli": "^2.27.11",
     "blanket": "^1.2.3",
     "grunt": "^1.0.4",
     "grunt-bump": "^0.8.0",

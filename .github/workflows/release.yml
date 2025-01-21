@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - fenghen
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  repository-projects: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 12.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 12
+
+      - name: Install Dependencies
+        run: npm install --frozen-lockfile --ignore-scripts
+
+      - name: Prep commit message
+        run: |
+          echo "NEW_VERSION=$(npm exec changeset status --output=release.json && jq -r '.releases[0].newVersion' release.json && rm release.json)" >> "$GITHUB_ENV"
+
+      - name: Create Release Pull Request
+        uses: changesets/action@v1
+        with:
+          version: npm exec changeset version
+          title: 'Release v${{env.NEW_VERSION}}'
+          commit: 'Release v${{env.NEW_VERSION}}'
+          publish: npm publish -r
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
