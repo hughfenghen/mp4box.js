@@ -20,22 +20,22 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 12.x
+      - name: Setup Node.js 20.x
         uses: actions/setup-node@v4
         with:
-          node-version: 12
+          node-version: 20
 
       - name: Install Dependencies
         run: npm install --frozen-lockfile --ignore-scripts
 
       - name: Prep commit message
         run: |
-          echo "NEW_VERSION=$(npm exec changeset status --output=release.json && jq -r '.releases[0].newVersion' release.json && rm release.json)" >> "$GITHUB_ENV"
+          echo "NEW_VERSION=$(npx changeset status --output=release.json && jq -r '.releases[0].newVersion' release.json && rm release.json)" >> "$GITHUB_ENV"
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          version: npm exec changeset version
+          version: npx changeset version
           title: 'Release v${{env.NEW_VERSION}}'
           commit: 'Release v${{env.NEW_VERSION}}'
           publish: npm publish -r
