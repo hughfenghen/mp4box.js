@@ -47,6 +47,6 @@
   "scripts": {
     "test": "grunt test --verbose",
     "build": "grunt all",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm build"
   }
 }
