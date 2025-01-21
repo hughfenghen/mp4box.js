@@ -44,7 +44,7 @@ jobs:
           version: pnpm changeset version
           title: 'Release v${{env.NEW_VERSION}}'
           commit: 'Release v${{env.NEW_VERSION}}'
-          publish: pnpm publish -r
+          publish: pnpm publish -r --no-git-checks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
