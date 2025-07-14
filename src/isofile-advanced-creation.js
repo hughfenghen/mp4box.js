@@ -90,6 +90,10 @@ ISOFile.prototype.addTrack = function (_options) {
 				var hvcC = new BoxParser.hvcCBox();
 				hvcC.parse(new MP4BoxStream(options.hevcDecoderConfigRecord));
 				sample_description_entry.addBox(hvcC);
+			} else if (options.vpcDecoderConfigRecord) {
+				var vpcC = new BoxParser.vpcCBox();
+				vpcC.parse(new MP4BoxStream(options.vpcDecoderConfigRecord));
+				sample_description_entry.addBox(vpcC);
 			}
 			break;
 		case "Audio":
